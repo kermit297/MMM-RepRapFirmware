@@ -13,7 +13,7 @@ Module.register("MMM-RepRapFirmware",{
 
         if (result != ""){
             var tableElement = document.createElement("table");
-            tableElement.style.fontSize = "large";
+            tableElement.style.fontSize = "x-large";
             tableElement.style.lineHeight = "normal";
 
             var parameters = this.config.parameters;
