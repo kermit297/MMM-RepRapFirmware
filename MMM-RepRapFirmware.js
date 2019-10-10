@@ -13,7 +13,7 @@ Module.register("MMM-RepRapFirmware",{
 
         if (result != ""){
             var tableElement = document.createElement("table");
-            tableElement.style.fontSize = "x-large";
+            tableElement.style.fontSize = "large";
             tableElement.style.lineHeight = "normal";
 
             var parameters = this.config.parameters;
@@ -50,7 +50,7 @@ Module.register("MMM-RepRapFirmware",{
 
             wrapper.appendChild(tableElement);
 
-            if (this.config.progressBar && result.timesLeft.filament > 0){
+            if (this.config.showProgressBar && result.timesLeft.filament > 0){
                 var progress = this.calculatePercent((result.timesLeft.filament), (result.printDuration));
 
                 var progressBar = document.createElement("progress");
