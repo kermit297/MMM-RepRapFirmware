@@ -4,7 +4,7 @@ This module for the [Magic Mirror²](https://github.com/MichMich/MagicMirror) al
  
 ## Screenshot
 
-![Screenshot](.github/screenshot.png)
+![Screenshot](screenshot.png)
 
 ## Installing the module
 
