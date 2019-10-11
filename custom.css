@@ -1,0 +1,35 @@
+progress {
+	width: 400px;
+	height: 30px;
+	margin-top: 10px;
+	display: block;
+	/* Important Thing */
+	-webkit-appearance: none;
+
+}
+
+/* All good till now. Now we'll style the background */
+progress::-webkit-progress-bar {
+	background: #757575;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+/* Now the value part */
+progress::-webkit-progress-value {
+	border-radius: 5px;
+	background-color: #000000
+}
+
+table {
+	font-size: "x-large";
+	line-height: normal;
+}
+
+.col1 {
+	text-align: left;
+}
+
+.col2 {
+	text-align: right;
+}

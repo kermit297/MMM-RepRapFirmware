@@ -13,8 +13,6 @@ Module.register("MMM-RepRapFirmware",{
 
         if (result != ""){
             var tableElement = document.createElement("table");
-            tableElement.style.fontSize = "x-large";
-            tableElement.style.lineHeight = "normal";
 
             var parameters = this.config.parameters;
             for (i = 0; i < parameters.length; i++){
@@ -37,13 +35,13 @@ Module.register("MMM-RepRapFirmware",{
 
                 newRow = document.createElement("tr");
 
-                newCell = newRow.insertCell();
-                newText = document.createTextNode(name);
-                newCell.appendChild(newText);
+                cell1 = newRow.insertCell();
+                cell1.innerHTML = name;
+                cell1.className = "col1";
                 
-                newCell = newRow.insertCell();
-                newText = document.createTextNode(val);
-                newCell.appendChild(newText);
+                cell2 = newRow.insertCell();
+                cell2.innerHTML = val;
+                cell2.className = "col2";
 
                 tableElement.appendChild(newRow);
             }
@@ -174,4 +172,10 @@ Module.register("MMM-RepRapFirmware",{
         var percent = (100 * printDuration) / (timeLeft + printDuration);
         return Math.round(percent);
     },
+
+    getStyles: function() {
+        return [
+            this.file('custom.css'), // this file will be loaded straight from the module folder.
+        ]
+    }
 });
