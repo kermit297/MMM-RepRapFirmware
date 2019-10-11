@@ -19,7 +19,7 @@ progress::-webkit-progress-value {
 }
 
 table {
-	font-size: "large";
+	font-size: large;
 	line-height: normal;
 }
 
