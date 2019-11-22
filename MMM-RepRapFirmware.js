@@ -137,6 +137,9 @@ Module.register("MMM-RepRapFirmware",{
             case "T":
                 state = "Tool Change";
                 break;
+            case "M":
+                state = "Simulating";
+                break;
         }
 
         return state;
