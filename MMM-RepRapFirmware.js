@@ -61,7 +61,7 @@ Module.register("MMM-RepRapFirmware",{
         result = "";
 
         setInterval(function() {
-            this.updateDom();
+            this.getDom();
         }, this.config.updateInterval);
     },
 
