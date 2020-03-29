@@ -8,7 +8,7 @@ Module.register("MMM-RepRapFirmware",{
 	},
 
 	// Override dom generator.
-	getDom: function(value) {
+	getDom: function() {
         var wrapper = document.createElement("div");
         var tableElement = document.createElement("table");
 
@@ -61,7 +61,7 @@ Module.register("MMM-RepRapFirmware",{
         result = "";
 
         setInterval(function() {
-            this.getDom();
+            self.getDom();
         }, this.config.updateInterval);
     },
 
