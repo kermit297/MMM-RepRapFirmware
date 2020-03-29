@@ -62,37 +62,37 @@ Module.register("MMM-RepRapFirmware",{
         result = "";
 
         setInterval(function() {
-            self.getUpdate();
+//            self.getUpdate();
 
         }, this.config.updateInterval);
     },
 
-    getUpdate: function(arr){
-        var self = this;
-
-        var xmlhttp = new XMLHttpRequest();
-        var url = "http://" + this.config.host + "/rr_status?type=3";
-
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {                
-                result = JSON.parse(xmlhttp.responseText);
-
-                if (self.hidden){
-                    self.show(1000);
-                }
-            }
-        };
-
-        xmlhttp.open("GET", url, true);
-        xmlhttp.onerror = function(){
-            if (!self.hidden){
-                self.hide(1000);
-            }
-        }
-        xmlhttp.send();
-
-        this.updateDom();
-    },
+//    getUpdate: function(arr){
+//        var self = this;
+//
+//        var xmlhttp = new XMLHttpRequest();
+//        var url = "http://" + this.config.host + "/rr_status?type=3";
+//
+//        xmlhttp.onreadystatechange = function() {
+//            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+//                result = JSON.parse(xmlhttp.responseText);
+//
+//                if (self.hidden){
+//                    self.show(1000);
+//                }
+//            }
+//        };
+//
+//        xmlhttp.open("GET", url, true);
+//        xmlhttp.onerror = function(){
+//            if (!self.hidden){
+//                self.hide(1000);
+//            }
+//        }
+//        xmlhttp.send();
+//
+//        this.updateDom();
+//    },
 
     convertTime: function(){
 
