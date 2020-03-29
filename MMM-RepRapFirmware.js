@@ -29,7 +29,7 @@ Module.register("MMM-RepRapFirmware",{
                         break;
                     case "timeLeft":
                         name = "Time Left";
-                        val = this.convertTime(result.timesLeft.filament);
+                        val = this.convertTime();
                         break;
                 }
 
@@ -145,28 +145,19 @@ Module.register("MMM-RepRapFirmware",{
         return state;
     },
 
-    convertTime: function(timeVal){
-        var hours = Math.floor(timeVal / (60*60));
-        var minutes =  Math.floor((timeVal - (hours * 60 * 60)) / 60);
-        var seconds = Math.round((timeVal - (hours * 60 * 60) - (minutes * 60)));
+    convertTime: function(){
 
-/*        if (minutes < 10){
-            minutes = "0" + minutes;
-        }
-        if (seconds < 10){
-            seconds = "0" + seconds;
-        }*/
+        var date1 = new Date();
+        var date2 = new Date(2020, 7, 20, 0 , 0, 0);
 
-        var timeString = "";
+        var dt = date2.getTime() - date1.getTime();
+        var dd = Math.floor(dt / (1000 * 3600 * 24));
+        var ds_tot = Math.floor((dt - dd*1000*3600*24)/1000);
+        var dh = (Math.floor(ds_tot/3600));
+        var dm = Math.floor((ds_tot - dh*3600)/60);
+        var ds = ds_tot - dh*3600 - dm*60;
 
-        if (hours > 0){
-            timeString += hours + "h ";
-            timeString += minutes + "m ";
-        }
-        else if (minutes > 0) {
-            timeString += minutes + "m ";
-        }
-        timeString += seconds + "s";
+        timeString = 'days: ' + dd + ', hr: ' + dh + ', min: ' + dm + ', sec: ' + ds;
 
         return timeString;
     },
