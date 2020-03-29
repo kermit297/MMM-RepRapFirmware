@@ -11,15 +11,20 @@ Module.register("MMM-RepRapFirmware",{
 	getDom: function(value) {
         var wrapper = document.createElement("div");
         var tableElement = document.createElement("table");
-
         var parameters = this.config.parameters;
+
+        var date1 = new Date();
+        var date2 = new Date(2020, 7, 20, 0 , 0, 0);
+        var dt = date2.getTime() - date1.getTime();
+        var dd = dt / (1000 * 3600 * 24);
+
         for (i = 0; i < parameters.length; i++){
             var name = "";
             var val = "";
             switch(parameters[i]){
                 case "percent":
-                    name = "Print Progress";
-                    val = this.calculatePercent(10, 100) + "%";
+                    name = "Baby Progress";
+                    val = this.calculatePercent(dd) + "%";
                     break;
                 case "timeLeft":
                     name = "Time Left";
@@ -43,7 +48,7 @@ Module.register("MMM-RepRapFirmware",{
         wrapper.appendChild(tableElement);
 
         if (this.config.showProgressBar){
-            var progress = this.calculatePercent(10, 100);
+            var progress = this.calculatePercent(dd);
 
             var progressBar = document.createElement("progress");
             progressBar.max = 100;
@@ -92,13 +97,13 @@ Module.register("MMM-RepRapFirmware",{
             ds = "0" + ds;
         }
 
-        timeString = 'days: ' + dd + ', hr: ' + dh + ', min: ' + dm + ', sec: ' + ds;
+        timeString = dd + ': ' + dh + ':' + dm + ':' + ds;
 
         return timeString;
     },
 
-    calculatePercent: function(timeLeft, printDuration){
-        var percent = (100 * printDuration) / (timeLeft + printDuration);
+    calculatePercent: function(days_left){
+        var percent = (100 * (40*7-days_left)) / (40*7);
         return Math.round(percent);
     },
 
