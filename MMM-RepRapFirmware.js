@@ -61,14 +61,13 @@ Module.register("MMM-RepRapFirmware",{
         result = "";
 
         setInterval(function() {
-//            self.getUpdate();
-              var a = 1;
+            self.getUpdate();
         }, this.config.updateInterval);
     },
 
-//    getUpdate: function(arr){
-//        var self = this;
-//
+    getUpdate: function(arr){
+        var self = this;
+
 //        var xmlhttp = new XMLHttpRequest();
 //        var url = "http://" + this.config.host + "/rr_status?type=3";
 //
@@ -89,9 +88,9 @@ Module.register("MMM-RepRapFirmware",{
 //            }
 //        }
 //        xmlhttp.send();
-//
-//        this.updateDom();
-//    },
+
+        this.updateDom();
+    },
 
     convertTime: function(){
 
