@@ -3,7 +3,7 @@ Module.register("MMM-RepRapFirmware",{
 	defaults: {
         host: "",
         updateInterval: "5000",
-        parameters: ["status", "timeLeft", "percent"],
+        parameters: ["timeLeft", "percent"],
         showProgressBar: true,
 	},
 
@@ -11,52 +11,46 @@ Module.register("MMM-RepRapFirmware",{
 	getDom: function(value) {
         var wrapper = document.createElement("div");
 
-        if (result != ""){
-            var tableElement = document.createElement("table");
+        var tableElement = document.createElement("table");
 
-            var parameters = this.config.parameters;
-            for (i = 0; i < parameters.length; i++){
-                var name = "";
-                var val = "";
-                switch(parameters[i]){
-                    case "status":
-                        name = "Status";
-                        val = this.convertStatus(result.status);
-                        break;
-                    case "percent":
-                        name = "Print Progress";
-                        val = this.calculatePercent((result.timesLeft.filament), (result.printDuration)) + "%";
-                        break;
-                    case "timeLeft":
-                        name = "Time Left";
-                        val = this.convertTime();
-                        break;
-                }
-
-                newRow = document.createElement("tr");
-
-                cell1 = newRow.insertCell();
-                cell1.innerHTML = name;
-                cell1.className = "col1";
-                
-                cell2 = newRow.insertCell();
-                cell2.innerHTML = val;
-                cell2.className = "col2";
-
-                tableElement.appendChild(newRow);
+        var parameters = this.config.parameters;
+        for (i = 0; i < parameters.length; i++){
+            var name = "";
+            var val = "";
+            switch(parameters[i]){
+                case "percent":
+                    name = "Print Progress";
+                    val = this.calculatePercent(10, 100) + "%";
+                    break;
+                case "timeLeft":
+                    name = "Time Left";
+                    val = this.convertTime();
+                    break;
             }
 
-            wrapper.appendChild(tableElement);
+            newRow = document.createElement("tr");
 
-            if (this.config.showProgressBar && result.timesLeft.filament > 0){
-                var progress = this.calculatePercent((result.timesLeft.filament), (result.printDuration));
+            cell1 = newRow.insertCell();
+            cell1.innerHTML = name;
+            cell1.className = "col1";
 
-                var progressBar = document.createElement("progress");
-                progressBar.max = 100;
-                progressBar.value = progress;
+            cell2 = newRow.insertCell();
+            cell2.innerHTML = val;
+            cell2.className = "col2";
 
-                wrapper.appendChild(progressBar);
-            }
+            tableElement.appendChild(newRow);
+        }
+
+        wrapper.appendChild(tableElement);
+
+        if (this.config.showProgressBar && result.timesLeft.filament > 0){
+            var progress = this.calculatePercent((result.timesLeft.filament), (result.printDuration));
+
+            var progressBar = document.createElement("progress");
+            progressBar.max = 100;
+            progressBar.value = progress;
+
+            wrapper.appendChild(progressBar);
         }
 
 		return wrapper;
@@ -89,9 +83,6 @@ Module.register("MMM-RepRapFirmware",{
             }
         };
 
-        
-
-
         xmlhttp.open("GET", url, true);
         xmlhttp.onerror = function(){
             if (!self.hidden){
@@ -101,48 +92,6 @@ Module.register("MMM-RepRapFirmware",{
         xmlhttp.send();
 
         this.updateDom();
-    },
-
-    convertStatus: function(stateVal){
-        var state = "";
-
-        switch(stateVal){
-            case "C":
-                state = "Processing";
-                break;
-            case "I":
-                state = "Idle";
-                break;
-            case "B":
-                state = "Busy";
-                break;
-            case "P":
-                state = "Printing";
-                break;
-            case "D":
-                state = "Decelerating";
-                break;
-            case "S":
-                state = "Stopped";
-                break;
-            case "R":
-                state = "Resuming";
-                break;
-            case "H":
-                state = "Halted";
-                break;
-            case "F":
-                state = "Flashing";
-                break;
-            case "T":
-                state = "Tool Change";
-                break;
-            case "M":
-                state = "Simulating";
-                break;
-        }
-
-        return state;
     },
 
     convertTime: function(){
