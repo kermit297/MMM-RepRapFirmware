@@ -82,6 +82,16 @@ Module.register("MMM-RepRapFirmware",{
         var dm = Math.floor((ds_tot - dh*3600)/60);
         var ds = ds_tot - dh*3600 - dm*60;
 
+        if (dh < 10){
+            dh = "0" + dh;
+        }
+        if (dm < 10){
+            dm = "0" + dm;
+        }
+        if (ds < 10){
+            ds = "0" + ds;
+        }
+
         timeString = 'days: ' + dd + ', hr: ' + dh + ', min: ' + dm + ', sec: ' + ds;
 
         return timeString;
