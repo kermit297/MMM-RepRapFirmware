@@ -77,7 +77,7 @@ Module.register("MMM-RepRapFirmware",{
 
     convertTime: function(){
 
-        var date1 = new Date();
+        var date1 = new Date.now();
         var date2 = new Date(2020, 7, 20, 0 , 0, 0);
 
         var dt = date2.getTime() - date1.getTime();
@@ -97,7 +97,7 @@ Module.register("MMM-RepRapFirmware",{
             ds = "0" + ds;
         }
 
-        timeString = dd + ': ' + dh + ':' + dm + ':' + ds;
+        timeString = dd + ':' + dh + ':' + dm + ':' + ds;
 
         return timeString;
     },
