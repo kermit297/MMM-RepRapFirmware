@@ -10,7 +10,6 @@ Module.register("MMM-RepRapFirmware",{
 	// Override dom generator.
 	getDom: function(value) {
         var wrapper = document.createElement("div");
-
         var tableElement = document.createElement("table");
 
         var parameters = this.config.parameters;
@@ -43,8 +42,8 @@ Module.register("MMM-RepRapFirmware",{
 
         wrapper.appendChild(tableElement);
 
-        if (this.config.showProgressBar && result.timesLeft.filament > 0){
-            var progress = this.calculatePercent((result.timesLeft.filament), (result.printDuration));
+        if (this.config.showProgressBar){
+            var progress = this.calculatePercent(10, 100);
 
             var progressBar = document.createElement("progress");
             progressBar.max = 100;
@@ -63,7 +62,7 @@ Module.register("MMM-RepRapFirmware",{
 
         setInterval(function() {
 //            self.getUpdate();
-
+              var a = 1;
         }, this.config.updateInterval);
     },
 
