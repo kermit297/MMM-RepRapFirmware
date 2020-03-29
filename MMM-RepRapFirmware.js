@@ -14,7 +14,7 @@ Module.register("MMM-RepRapFirmware",{
         var parameters = this.config.parameters;
 
         var date1 = new Date();
-        var date2 = new Date(2020, 7, 20, 0 , 0, 0);
+        var date2 = Date("07/20/2020 00:00:00");
         var dt = date2.getTime() - date1.getTime();
         var dd = dt / (1000 * 3600 * 24);
 
@@ -78,7 +78,7 @@ Module.register("MMM-RepRapFirmware",{
     convertTime: function(){
 
         var date1 = new Date.now();
-        var date2 = new Date(2020, 7, 20, 0 , 0, 0);
+        var date2 = new Date("07/20/2020 00:00:00");
 
         var dt = date2.getTime() - date1.getTime();
         var dd = Math.floor(dt / (1000 * 3600 * 24));
