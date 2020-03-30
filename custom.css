@@ -6,7 +6,7 @@ progress {
 }
 
 progress::-webkit-progress-bar {
-	background: #f0f0f0;
+	background: #b0b0b0;
 	border-radius: 10px;
 	padding: 5px;
 }
