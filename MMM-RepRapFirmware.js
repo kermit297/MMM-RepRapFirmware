@@ -24,7 +24,7 @@ Module.register("MMM-RepRapFirmware",{
             switch(parameters[i]){
                 case "percent":
                     name = "Baby Progress";
-                    val = this.calculatePercent(dd) + "%";
+                    val = this.calculatePercent(dt) + "%";
                     break;
                 case "timeLeft":
                     name = "Time Left";
