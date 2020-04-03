@@ -48,7 +48,7 @@ Module.register("MMM-RepRapFirmware",{
         wrapper.appendChild(tableElement);
 
         if (this.config.showProgressBar){
-            var progress = this.calculatePercent(dd);
+            var progress = this.calculatePercent(dt);
 
             var progressBar = document.createElement("progress");
             progressBar.max = 100;
@@ -102,9 +102,9 @@ Module.register("MMM-RepRapFirmware",{
         return timeString;
     },
 
-    calculatePercent: function(days_left){
-        var percent = (100 * (40*7-days_left)) / (40*7);
-        return Math.round(percent);
+    calculatePercent: function(ms_left){
+        var percent = (100 * (40*7*24*3600*1000-ms_left)) / (40*7*24*3600*1000);
+        return percent.toFixed(5);
     },
 
     getStyles: function() {
